@@ -1,0 +1,18 @@
+# Mass measurements for 18-crown-6 crystals on weighing paper on Mettler-Toledo XA105 DualRange at 70.1F (21.2C).
+# time (min)   mass (mg)
+# Listed mass uncertainty +- 0.01 mg.
+# Mass of weighting paper after removing crystals 0.28 mg (unreliable?).
+0    25.95
+1    25.97
+2    25.99
+3    26.00
+4    26.01
+5    26.01
+6    26.02
+7    26.04
+8    26.04
+9    26.04
+10   26.04
+11   26.04
+12   26.04
+24   26.06

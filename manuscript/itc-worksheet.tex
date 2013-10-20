@@ -1,0 +1,379 @@
+ % PRL look and style (easy on the eyes)
+%\documentclass[aps,pre,twocolumn,superscriptaddress,nofootinbib]{revtex4-1}
+% Two-column style (for submission/review/editing)
+%\documentclass[aps,preprint,prl,superscriptaddress,showpacs]{revtex4}
+\documentclass[preprint,5p,twocolumn, times]{elsarticle}
+%\documentclass[final,1p,times,twocolumn]{elsarticle}
+
+%\usepackage{palatino}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{dcolumn}
+\usepackage{boxedminipage}
+\usepackage{verbatim}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+\usepackage{widetext}
+
+% The figures are in a figures/ subdirectory.
+\graphicspath{{figures/}}
+
+% italicized boldface for math (e.g. vectors)
+\newcommand{\bfv}[1]{{\mbox{\boldmath{$#1$}}}}
+% non-italicized boldface for math (e.g. matrices)
+\newcommand{\bfm}[1]{{\bf #1}}          
+
+%\newcommand{\bfm}[1]{{\mbox{\boldmath{$#1$}}}}
+%\newcommand{\bfm}[1]{{\bf #1}}
+\newcommand{\expect}[1]{\left \langle #1 \right \rangle}                % <.> for denoting expectations over realizations of an experiment or thermal averages
+
+% vectors
+\newcommand{\x}{\bfv{x}}
+\newcommand{\y}{\bfv{y}}
+\newcommand{\f}{\bfv{f}}
+
+\newcommand{\bfc}{\bfm{c}}
+\newcommand{\hatf}{\hat{f}}
+
+\newcommand{\bTheta}{\bfm{\Theta}}
+\newcommand{\btheta}{\bfm{\theta}}
+\newcommand{\bhatf}{\bfm{\hat{f}}}
+\newcommand{\cov}[1] {\mathrm{cov}\left( #1 \right)}
+\newcommand{\var}[1] {\mathrm{var}\left( #1 \right)}
+\newcommand{\Ept}[1] {{\mathrm E}\left[ #1 \right]}
+\newcommand{\Eptk}[2] {{\mathrm E}_{#1}\left[ #2\right]}
+\newcommand{\T}{\mathrm{T}}                                % T used in matrix transpose
+
+% Commands to force LaTeX to put two figures on a page:
+%\renewcommand{\textfraction}{0.05}
+%\renewcommand{\topfraction}{0.95}
+%\renewcommand{\bottomfraction}{0.95}
+%\renewcommand{\floatpagefraction}{0.35}
+%\setcounter{totalnumber}{5}
+
+\journal{Analytical Biochemistry}
+
+%% DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%% TITLE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Avoiding accuracy-limiting pitfalls in the study of protein-ligand interactions with isothermal titration calorimetry}
+
+\author[qb3]{Sarah E.~Boyce\fnref{gilead}}
+%\ead{sarah.boyce@gilead.com}
+%\ead[url]{home page}
+%\fntext[label2]{label2}
+%\cortext[cor1]{cor1}
+%\address[qb3]{California Institute of Quantitative Biosciences (QB3), University of California, Berkeley, CA 94720}
+\fntext[gilead]{Current address: Gilead Sciences, Foster City, CA 94404}
+
+\author[vanderbilt]{Joel Tellinghuisen}
+%\ead{joel.tellinghuisen@vanderbilt.edu}
+%\ead[url]{home page}
+%\fntext[label3]{label3}
+
+\author[qb3]{John D.~Chodera\corref{cor1}}
+%\fntext[label2]{label2}
+\cortext[cor1]{Corresponding author.}
+\ead{jchodera@berkeley.edu}
+%\ead[url]{http://choderalab.org}
+
+\address[qb3]{California Institute of Quantitative Biosciences (QB3), University of California, Berkeley, CA 94720}
+\address[vanderbilt]{Department of Chemistry, Vanderbilt University, Nashville, TN 37235}
+
+
+%\author{Sarah E. Boyce}
+%\email[Electronic Address: ]{sarah.e.boyce@berkeley.edu}
+%\affiliation{California Institute of Quantitative Biosciences (QB3), University of California, Berkeley, CA 94720}
+%
+%\author{Joel Tellinghuisen}
+% \email[Electronic Address: ]{joel.tellinghuisen@vanderbilt.edu}
+% \affiliation{Department of Chemistry, Vanderbilt University, Nashville, TN 37235}
+%
+%\author{John D. Chodera}
+%\email[Electronic Address: ]{jchodera@berkeley.edu}
+%\thanks{Corresponding author.}
+%\affiliation{California Institute of Quantitative Biosciences (QB3), University of California, Berkeley, CA 94720}
+
+%\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% NO ABSTRACT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+Isothermal titration calorimetry (ITC) can yield precise ($\pm$3\%) estimates of the thermodynamic parameters describing biomolecular association (affinity, enthalpy, and entropy), making it an indispensable tool for biochemistry and drug discovery.  
+Surprisingly, interlaboratory comparisons suggest that errors of $\sim$20\% are common and widely underreported. 
+Here, we show how to reduce precision- and accuracy-limiting errors while obtaining good estimates while minimizing material and time consumed by an experiment.
+We provide a simple spreadsheet that allows practitioners to identify precision-limiting operations during protocol design, track precision during the experiment, and propagate error to yield realistic final uncertainties.\\
+\emph{Keywords: isothermal titration calorimetry (ITC), propagation of error, entropy-enthalpy compensation}
+\end{abstract}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% INTRODUCTION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section*{Introduction}
+
+Isothermal titration calorimetry (ITC)~\cite{wiseman:anal-biochem:1989:itc} is a popular technique for probing phenomena of biological interest, including protein-ligand interactions.  
+While the method consumes more reagents than optical or spectroscopic techniques, it does not require specific labeling of the system under study, and a single experiment can yield estimates of all thermodynamic parameters\footnote{All thermodynamic quantities refer to their standard forms.} characterizing a reaction---the association constant $K$ (and hence standard binding free energy  $\Delta G = RT \ln K$), the enthalpy change $\Delta H$, and the reaction standard entropy $\Delta S$ (henceforth omitting superscripts).  
+With careful work on a well-behaved system, relative standard errors (RSEs) of 1–-3\% are regularly achievable~\cite{tellinghuisen:biophys-chem:2004:barium-crown-ether-itc}. 
+However, in a large-scale survey (ABRF-MIRG'02) in which 14 core ITC facilities studied the association of carboxybenzenesulfonamide (CBS) with bovine carbonic anhydrase II (CAII), the variation among reported binding constants and enthalpies was more than an order of magnitude larger than the standard errors reported by the participants~\cite{myszka:2003:j-biomol-tech:abrf-mirg02}. 
+This unexpectedly large variation has been attributed mainly to errors in titrant (syringe reagent) concentration, which is treated as exact in standard analysis procedures~\cite{tellinghuisen-chodera:2011:anal-biochem:systematic-itc-errors}.  
+Failure to propagate these errors into reported results can lead practitioners astray in the interpretation of their data, especially if differences in $\Delta G$ or $\Delta H$ are of interest---for example, within a structure-activity relationship (SAR) series or in interpretation of enthalpic ($\Delta H$) and entropic ($-T \Delta S$) contributions to binding~\cite{freire:drug-discovery-today:2008:entropy-enthalpy,freire:nat-rev-drug-discovery:2010:itc-lead-optimization}. 
+
+We therefore strongly advocate that practitioners report the method by which the titrant is prepared, the uncertainty in titrant concentration, and the resulting total error in thermodynamic parameters including titrant uncertainty in all reports of calorimetric measurements.
+Otherwise, it \emph{must} be assumed that the reported $K$, $\Delta H$, and $\Delta S$ are contaminated by errors up to 20\%, the best estimate of this unreported error available to date~\cite{tellinghuisen-chodera:2011:anal-biochem:systematic-itc-errors}.
+To aid practitioners in reducing and reporting error, we discuss accuracy-limiting steps in solution preparation and provide a spreadsheet\footnote{Available online at \url{http://simtk.org/home/itc-worksheet}.} for automatically tracking uncertainties and propagating their contributions to produce realistic error estimates.
+
+% JDC: These are all excellent points, but might not be relevant to the central message of propagating concentration error.  Will add these back in if we can come up with a way of emphasizing importance of minimizing material use.
+%
+%Another consequence of standard protocols is that the high recommended concentrations of macromolecule (and hence ligand) can be problematic, requiring the use of buffer additives such as DMSO to enhance solubility, reducing agents to prevent crosslinking, and detergents to inhibit aggregation. 
+%These additives pose additional experimental challenges, as the measured heats can be sensitive to even small composition mismatches between cell and syringe solutions. 
+%Minimizing these effects generally requires dialysis of the macromolecule by buffer followed by preparation of the titrant in the dialysate.  
+%If the ligand is already in solution stock, this procedure may not fully eliminate excipients from the titrant, leading to potential heat effects due to buffer mismatch, even if attempts are made to match compositions by further adjustments.
+
+For illustration, we consider the target reaction from the ABRF-MIRG'02 survey~\cite{myszka:2003:j-biomol-tech:abrf-mirg02}, the 1:1 association of CBS and bovine CAII, which can be written,
+\begin{equation}
+M + X \stackrel{K}{\leftrightharpoons} MX \label{equation:binding-reaction} ,
+\end{equation}
+where $M$ denotes macromolecule and $X$ ligand.
+This reaction has a $K_a \sim 10^6$M and $\Delta H \sim -10$ kcal/mol~\cite{myszka:2003:j-biomol-tech:abrf-mirg02,tellinghuisen-chodera:2011:anal-biochem:systematic-itc-errors}.
+
+As both protein and ligand may be precious, there is a desire to minimize material use in protein-ligand studies.
+Using concentrations only as large as necessary also minimizes the need for buffer additives such as DMSO to enhance solubility, reducing agents to prevent crosslinking, and detergents to inhibit aggregation. 
+These additives pose additional experimental challenges, as calorimetrically-measured heats can be sensitive to even small composition mismatches between cell and syringe solutions. 
+Minimizing these effects requires dialysis of the macromolecule by buffer followed by preparation of the ligand in the dialysate.  
+If the ligand is already in solution (e.g.~in DMSO stock), it may not be possible to fully eliminate excipients, leading to potential heat effects due to buffer mismatch even if attempts are made to match compositions~\cite{tellinghuisen-boyce-chodera:2012:anal-biochem:blanks}.
+
+In the ABRF-MIRG'02 survey~\cite{myszka:2003:j-biomol-tech:abrf-mirg02}, participants employed titrand (cell reagent) concentrations [M]$_0$ in the range 7--71 $\mu$M.
+We used an ITC protocol design program~\cite{tellinghuisen:2012:anal-biochem:designing-itc-experiments}, which indicated $\sim$3\% relative squared error (RSE) in $K$ and $\sim$1\% for $\Delta H$ was possible with our instrument (a GE/MicroCal VP-ITC) using [M]$_0$ = 10 $\mu$M (consuming $\sim$0.5 mg protein per experiment).
+While this gives $c = K [M]_0 \approx 10$, a key ITC parameter~\cite{wiseman:anal-biochem:1989:itc}, in the low range of that recommended by standard protocols, high measurement precision can still be obtained at this $c$ value by titrating to an optimal titrant:titrand ratio $R_m$ given by,
+\begin{equation}
+R_m = \frac{6.4}{c^{0.2}} +\frac{13}{c} \label{equation:limiting-concentration},
+\end{equation}
+a heuristic expression\footnote{While use of this expression requires a rough estimate of the reaction $K$ and an $[M]_0$ that will produce observable heats, this is currently unavoidable in the practice of calorimetry. In the worst case, a pilot experiment using minimal material can be used to crudely estimate these quantities and Eq.~\ref{equation:limiting-concentration} used to determine optimal conditions for a second experiment.} obtained from a comprehensive study of precision as a function of $R_m$~\cite{tellinghuisen:jpcb:2005:optimizing-experimental-parameters-itc}.
+The suggested $R_m = 5.3$ is significantly greater than the $R_m = 2$ that is widely used in standard protocols for ITC; with decreasing $c$, use of $R_m = 2$ progressively limits the fractional conversion of M to MX and thus limits the precision of estimation for both $K$ and $\Delta H$~\cite{tellinghuisen:2012:anal-biochem:designing-itc-experiments}.
+In the present case, use of $R_m = 2$ would cause significant precision loss, almost doubling the achievable RSEs for $K$ and $\Delta H$.
+
+The same optimization study~\cite{tellinghuisen:jpcb:2005:optimizing-experimental-parameters-itc} demonstrated that the experimental precision depended only weakly on the number of injections $m$, recommending $m = 10$ for processes confidently known to involve 1:1 complexation.
+This is in sharp contrast to $\sim$30 injections often recommended by standard protocols in order to visualize a full sigmoidal (S-shaped) curve in the enthalpogram, which would unnecessarily limit precision here by reducing the heat per injection (increasing RSEs to 19\% and 4\%, respectively), as well as increasing the duration of the titration experiment nearly three-fold~\cite{tellinghuisen:jpcb:2005:optimizing-experimental-parameters-itc}.
+Using 10 injections, each of volume $v = 10$ $\mu$L, we can compute the approximate syringe concentration $[X]_s$ required from the relevant volumes.
+For perfusion-type instruments, assuming instantaneous mixing (appropriate for most reactions~\cite{tellinghuisen:anal-biochem:2007:itc-calibration-nacl}), this is given by,
+\begin{equation}
+%[X]_s = [M]_0 \, R_m \, V_0 / (m v) \label{equation:syringe-concentration} % old equation
+[X]_s = R_m [M]_0 \left[ 1 - \exp\left(-\frac{m v}{V_0}\right)\right]^{-1} \approx R_m [M]_0 \frac{V_0}{m v} \label{equation:syringe-concentration}
+\end{equation}
+where $V_0$ is the cell active volume ($\sim$1.4 mL for the VP-ITC) and the approximate equality follows if the total titrant injected is small compared to the cell volume ($m v \ll V_0$).
+For our experiment, Eq.~\ref{equation:syringe-concentration} suggests we should use a purity-corrected titrant concentration $[X]_s\sim720$~$\mu$M.
+
+Our GE/MicroCal VP-ITC instrument has a syringe assembly that utilizes a worm gear which, after the recommended purge-refill process, will cause a titrant shortfall in the first injection unless a ``down syringe'' command is issued prior to loading the syringe into the sample cell~\cite{tellinghuisen:anal-biochem:2004:first-injection-anomaly}; we therefore executed a 10~$\mu$L ``down syringe'' command immediately after the purge-refill cycle.
+Because the instrument can take a substantial period of time to stabilize at the desired experimental temperature after loading the syringe, significant ($>$ 0.1 $\mu$L) diffusive loss can also contribute to a first injection shortfall.
+We therefore programmed an initial 1 $\mu$L ``throwaway injection'' to avoid the need to correct for diffusive titrant loss during the first 10 $\mu$L injection.
+The contribution from this initial 1 $\mu$L ``throwaway'' injection was excluded from the fitting procedure during analysis.
+
+%\section*{Titrate preparation}
+
+%Bovine carbonic anhydrase (Sigma-Aldrich, cat no.~C2522, 80\% purity) was purchased as a lyophylized powder. 
+%Following the assay conditions outlined in Myszka et al.~\cite{myszka:2003:j-biomol-tech:abrf-mirg02}, 2 L of PBS buffer was prepared for overnight dialysis of the protein sample. 
+%The protein solution was prepared by dissolving $25\pm0.1$ mg in $4\pm0.1$ mL of PBS buffer. 
+%The concentration of the resulting solution was determined prior- and post-dialysis spectrophotometrically on a Hewlett-Packard Agilent UV-Vis spectrophotometer model 8453, using the molar extinction coefficient $\epsilon_{280 \:\mathrm{nm}}$  = 50070 M$^{-1}$ cm$^{-1}$~\cite{myszka:2003:j-biomol-tech:abrf-mirg02}. 
+%The sample was then diluted to [M]$_0$ $\sim$ 10 $\mu$M using the purity-corrected post-dialysis concentration. 
+%Because the site parameter $n$ absorbs errors in [M]$_0$ during the fitting procedure [Tellinghuisen], high precision is not required for these steps; a less precise spectrophotometer (such as the popular NanoDrop ND-1000) would suffice.
+
+%\section*{Titrant preparation}
+
+The titrand solution, bovine CAII (Sigma-Aldrich, cat no.~C2522, $\sim$29 kDa{\color{red}[JDC: Check MW.]}, Lot No.~071M6261) in PBS buffer, was prepared following the assay conditions outlined by Myszka et al.~\cite{myszka:2003:j-biomol-tech:abrf-mirg02}.  
+Briefly, the contents of the glass vial containing $\sim$ 5 mg of lyophilized CAII were resuspended in 750 $\mu$L filtered buffer and dialyzed overnight in 1 L buffer using a Novagen D-Tube Dialyzer MWCO 3.5 kDa (Cat No.~71506-3, Lot D00131446).
+The recovered protein was spun for 30 min at 16300 RPM with no visible precipitate observed.
+The dialysate was filtered again and used to prepare both titrant and tetrad to minimize buffer mismatch heats during the ITC experiment.
+
+The protein concentration was determined spectrophotometrically via absorbance at 280 nm on a NanoDrop ND-1000.
+The NanoDrop (and similar instruments) utilize small sample volumes (3 $\mu$L was used here) and a 1 mm path length such that even high protein concentrations can be quickly read without the need to perform intermediate dilutions to ensure the absorbance falls in the linear range of Beer's law on standard 10 mm path-length spectrometers.
+The measured absorbance of 11.77$\pm$0.03 indicated a protein concentration of 235.0$\pm$0.6 $\mu$M (using the molar extension coefficient ($\epsilon_\mathrm{280\:nm} = 50070$ M$^{-1}$ cm$^{-1}$~\cite{myszka:2003:j-biomol-tech:abrf-mirg02}).
+{\color{red}[JDC: Should we include the error in $\epsilon$ here?  Or perhaps we should drop the error bars since high precision isn't required?]}
+The sample was then diluted to [M]$_0$ $\approx$ 10 $\mu$M using the purity-corrected post-dialysis concentration. 
+Note that, because the site parameter $n$ absorbs errors in [M]$_0$ in standard least-squares data analysis~\cite{tellinghuisen:2012:anal-biochem:designing-itc-experiments}, high precision is not required for these steps unless the stoichiometry is unknown.
+
+By contrast, care must be taken to minimize inaccuracies in preparing titrant solutions, because the standard data analysis algorithms treat [X]$_s$ as exactly known.  
+Thus, a 1\% error in [X]$_s$ produces 1\% errors in the estimates of $K$ and $\Delta H$~\cite{tellinghuisen:jpcb:2005:optimizing-experimental-parameters-itc,tellinghuisen-chodera:2011:anal-biochem:systematic-itc-errors}.  
+Our titrant (CBS, Sigma-Aldrich, lot \#MKBF3323V, 97\% purity, MW 201.2) comes as a powder, from which we aim to prepare a solution of 
+purity-corrected\footnote{Recall that 97\% purity denotes 1 g of powder should contain 0.97 g CBS.}  concentration $[X]_s \sim 720$ $\mu$M using the dialysate. 
+Uncertainties in the true [X]$_s$ come from at least two sources: the mass of CBS and volume of buffer used in preparing this solution, each of which will be imprecise due to measurement error.  
+Further dilution steps will introduce additional error.
+
+\begin{figure}[tb]
+\centering
+\resizebox{0.8\columnwidth}{!}{\includegraphics{102512a-final-figure-corr-fit.PDF}}
+\caption{{\bf Titration of CAII by CBS at 25 C.}
+\emph{Top:} Differential power \emph{vs.} time after blank subtraction and baseline correction in Origin.
+\emph{Bottom:} Peak integration and 1:1 binding model fit in Origin.  Note that no initial injections were discarded.
+Least-squares fit with Origin gives the following thermodynamic parameters and fit uncertainties: $K_a = 1.20(3)\times10^6$ M$^{-1}$, $\Delta H = -11.27(6)$ kcal/mol, $n = 0.915(3)$.
+Propagation of titrant error with the provided spreadsheet gives updated parameters with realistic uncertainties: $K_a = 1.20(3)\times10^6$ M$^{-1}$, $\Delta H = -11.3(2)$ kcal/mol, and $n = 0.915(4)$.
+See Supplementary Material for  complete experimental details and links to download raw data.
+\label{figure:enthalpogram}
+}
+\end{figure}
+
+To load the VP-ITC syringe, we require $\sim$2.1 mL of our titrant\footnote{A smaller 700 $\mu$L filling tube is also available.}.  
+For our chosen [X]$_s$ $\sim$ 720, this requires only 0.3 mg of CBS, but given our analytical balance precision ($\pm$0.1 mg), this would yield 33\% uncertainty in [X]$_s$, and hence the final relative errors in $K$ and $\Delta H$ would be \emph{at least} this large.  
+{\color{red}[JDC: Which model balance was used for this?]}
+To reduce the mass uncertainty to 1\%, we must weigh out at least 10 mg.  
+Since the solubility of CBS in water is only 453 mg/L (which corresponds to a 2 250 $\mu$M solution), we need a volume of at least 22 mL to dissolve 10 mg.
+Using a 25 mL Class A volumetric flask or pipette (rated $\pm$0.05 mL) would allow us to attain the desired 1\% precision.  
+On the other hand, graduated cylinders and serological pipettes with 25 mL capacity often possess a precision of only $\pm$0.5 ml, which would raise the uncertainty in [X]$_s$ to 2\%.  
+Here, we found it convenient to employ multiple liquid transfers with a Gilson P5000 5 mL pipette, which has a stated reliability of $\pm$0.03 mL at full capacity\footnote{For pipettes, the stated systematic error $\delta$ is generally the dominant source of error, and can be considered random error if each pipette is used once.  However, if the same pipette is used to deliver \emph{multiple} aliquots, the random error contribution for the total volume transferred should be estimated from summing the systematic error $\delta$ for each transfer.  For example, if 25 mL are transferred in five transfers of 5 mL using a P5000 ($\delta = 30$ $\mu$L), the random error contribution is $(5)(0.030) = 0.15$ mL.}.
+
+We chose to prepare a 1 500 $\mu$M CBS stock solution as a compromise between ensuring complete solubility of CBS (solubility 2 250 $\mu$M in water) and minimizing buffer use (preparing a solution of $\sim$720 $\mu$M directly with 10 $\mu$g CBS would have doubled the quantity of buffer required).
+To do this, we added 10.0$\pm$0.1 mg [henceforth written 10.1(1) mg] CBS to 32.1(2) mL PBS dialysate and vortexed to ensure the compound was completely dissolved, yielding 32.2(2) mL of a 1 500(20) $\mu$M CBS stock solution.  
+
+To ensure sufficient $\sim$718.29 $\mu$M titrant to allow for a ligand-into-buffer blank titration and additional experimental replications if needed, we planned to prepare 9 mL of titrant solution.
+This is more than necessary, as minimum of 700 $\mu$L/experiment is required for the VP-ITC if the low-volume syringe loading tube is utilized.
+Using the Gilson P5000, we then added 4.309(12) mL CBS stock to 4.691(12) mL PBS to obtain a 719(9) $\mu$M CBS titrant (1\% RSE).  
+Error propagation was performed automatically by the spreadsheet (Figure \ref{figure:spreadsheet}) using standard techniques (discussed below).
+Note that gravimetric solution preparation---in which the mass of both compound and solvent is used to determine the final concentration---could have been used instead, eliminating the need to ensure all solutions are at the appropriate temperature for volumetric glassware or pipettes.
+{\color{red}[JDC: Can we say something about volume variation with temperature and how much of a problem this is expected to be?]}
+Automated systems for gravimetric solution preparation and concentration error determination are available, though more commonly used in industrial settings.
+
+Alternatively, we could have determined the titrant concentration [X]$_s$ spectrophotometrically using the known extinction coefficient of CBS at 272 nm (reported as $\epsilon_\mathrm{272\:nm} = 1.31(13) \times 10^3$ M$^{-1}$ cm$^{-1}$~\cite{myszka:2003:j-biomol-tech:abrf-mirg02}).
+However, since the uncertainty in the absorbance measurement is 1\%, the uncertainty in the extinction coefficient $\epsilon$ (10\%) would dominate the concentration error, resulting in a spectrophotometrically-determined concentration that is uncertain by 10\%. 
+Indeed, the concentration we measure in this manner---700(70) $\mu$M {\color{red}[JDC: I have to re-measure the absorbance of the latest titrant solution.]}---is consistent with that determined by mass and volume, but is an order of magnitude more uncertain; had we chosen to use this spectrophotometrically-determined concentration for [X]$_s$, our final uncertainties in $K$ and $\Delta H$ would be at least 10\%.
+
+The titration dataset (Figure~\ref{figure:enthalpogram}) was analyzed using Origin 7.0 (OriginLab Corp.) after subtracting heats obtained from a separate ligand-into-buffer “blank” titration utilizing the same protocol.
+%Here, the blank heats were small and uniform and altered the parameter estimates by only about one SE (see Supplementary Material).  
+The least-squares (LS) fit of the thermodynamic parameters to the integrated injection heats are shown in the caption.  
+Note that the site parameter $n$ absorbs errors in [M]$_0$ and the cell volume V$_0$; if the actual concentration of active macromolecule is of interest, these quantities will require more precision~\cite{tellinghuisen:anal-biochem:2004:volume-errors-in-itc}.
+While $\Delta H$ is rather insensitive to errors in the stated cell volume V$_0$ as a result, those errors can have a substantial effect on $K$, so careful calibration of V$_0$ using standard reactions~(e.g.~\cite{tellinghuisen:biophys-chem:2004:barium-crown-ether-itc,tellinghuisen:anal-biochem:2007:itc-calibration-nacl}) is advised if highly accurate quantitation $K$ is necessary~\cite{tellinghuisen:anal-biochem:2004:volume-errors-in-itc}.
+{\color{red}[JDC: Joel, is this statement not sufficient, or do you think we really need to include the $V_0$ calibration results?]}
+
+The error reported by the LS fit only represents the error in model fitting assuming the specified concentration for titrant is \emph{exact}---we must now include the uncertainty in the titrant concentration to obtain an estimate of the true error.
+The general rule for random error propagation for a quantity $f(x,y,z,\ldots)$ dependent on \emph{independent} measurements $x,y,z,\ldots$ gives squared standard error $s_f$ in $f$ as~\cite{taylor-error-propagation},
+\begin{equation}
+s_f^2 = \left(\frac{\partial f}{\partial x}\right)^2 s_x^2 + \left(\frac{\partial f}{\partial y}\right)^2 s_y^2 + \left(\frac{\partial f}{\partial z}\right)^2 s_z^2 + \cdots \label{equation:propagation-of-error}
+\end{equation}
+where $s_x$, $s_y$, and $s_z$ are the standard errors of the corresponding measurements.
+This form, based on a Taylor expansion of the function $f$, can be extended to any number of contributing terms (e.g., additional volume contributions if multiple dilutions are used)~\cite{taylor-error-propagation}.  
+If $f$ has a simple form, so that it can be written $f(x,y,z,\ldots) = x^i y^j z^k \cdots$, then Eq.~\ref{equation:propagation-of-error} assumes the simple form,
+\begin{equation}
+\left(\frac{s_f}{f}\right)^2 = i^2 \left(\frac{s_x}{x}\right)^2 + j^2 \left(\frac{s_y}{y}\right)^2 + k^2 \left(\frac{s_y}{z}\right)^2 + \cdots \label{equation:relative-error}
+\end{equation}
+where $i$, $j$, and $k$ are the powers to which the independent measurements $x$, $y$, and $z$ are raised, and $(s_f / f)$ is the relative error in $f$.
+Often, a single term in Eq.~\ref{equation:relative-error} will dominate, and the relative error is essentially identical to this contribution.
+For example, if $f = x/y$ with $(s_x/x)$ = 4\% and $(s_y/y)$ = 1\%, then $(s_f/f) = 4.1\% \approx 4\%$.
+
+Provided the relative errors in concentration $[X]_s$ are sufficiently small ($<$20\%) for the Taylor expansion above to be accurate, we can use Eq.~\ref{equation:relative-error} to estimate the relative error in the thermodynamic parameters $K$ and $\Delta H$ given corresponding  uncertainties from the least-squares fit $s_\mathrm{K,LS}$ and $s_\mathrm{\Delta H, LS}$ and the uncertainty in the titrant concentration $s_\mathrm{[X]_s}$~\cite{tellinghuisen-chodera:2011:anal-biochem:systematic-itc-errors},
+\begin{equation}
+\left(\frac{s_{K}}{K}\right)^2 = \left(\frac{s_\mathrm{K,LS}}{K}\right)^2 + \left(\frac{s_\mathrm{[X]_s}}{[X]_s}\right)^2 \:\:; \:\:
+\left(\frac{s_{\Delta H}}{\Delta H}\right)^2 = \left(\frac{s_\mathrm{\Delta H,LS}}{\Delta H}\right)^2 + \left(\frac{s_\mathrm{[X]_s}}{[X]_s}\right)^2 . 
+\label{equation:relative-error-in-thermodynamic-parameters}
+\end{equation}
+Since the uncertainty in our [X]$_s$ is only 1\%, the 3\% LS fit uncertainty dominates for $K$; but for $\Delta H$ the titrant uncertainty is more important, increasing the RSE from 0.7\% to 1.2\%.  
+These computations are automatically handled by the spreadsheet, which also computes $\Delta G$ and $\Delta S$ and their uncertainties.  
+
+Since $\Delta G$ logarithmically depends on $K$ through the relation $\Delta G = RT \ln K$, the uncertainty in $\Delta G$ computed using Eq.~\ref{equation:relative-error-in-thermodynamic-parameters} (0.02 kcal/mol) is much smaller than that in $\Delta H$ (0.15 kcal/mol).
+If the entropic contribution to binding, $-T \Delta S = \Delta G - \Delta H$ is of interest, its uncertainty can similarly be obtained from Eq.~\ref{equation:propagation-of-error}, and found to be of the same magnitude as that in $\Delta H$ (0.15 kcal/mol)\footnote{Because $\Delta H$ and $K$ (hence $\Delta G$ are obtained from the same fit---and hence are correlated---cross-terms of the form $2 (\partial f/\partial x)(\partial f/\partial y) s_{xy}$ with $x \equiv \Delta G$ and $y \equiv - \Delta H$ must be added to Eq.~\ref{equation:propagation-of-error}, but because the uncertainty in $\Delta H$ is an order of magnitude larger than that in $\Delta G$, it still dominates the overall uncertainty even if these correlation terms are included.}.  
+%Had we instead made $\sim$10\% error in [X]$_s$ as the participates in the ABRF-MIRG'02 study did, our uncertainties would have increased to 0.06 kcal/mol in $\Delta G$, 1.08 kcal/mol in $\Delta H$, 
+
+Comparing our results including the titrant error propagated by the spreadsheet [$K= 1.20(3) \times 10^{-6}$ M$^{-1}$ and $\Delta H = -11.3 (2)$ kcal/mol] with the best-fit to the ABRF-MIRG'02 results [$K = 1.08 (4) \times 10^6$ M$^{-1}$ and $\Delta H = -11.11(4)$ kcal/mol]~\cite{tellinghuisen-chodera:2011:anal-biochem:systematic-itc-errors}, we see that the agreement with the best-fit values is quite close, differing by only 2.4 and 1 standard errors.
+The RSEs of our results are quite good---3\% in $K$ and 1\% in $\Delta H$---and in line with the predicted errors from our initial experimental modeling step.
+
+Notably, had we instead inadvertently made a 10\% error in the titrant concentration [X]$_s$ during its preparation through a precision-degrading step (such as massing out less than 10 mg or using low-precision liquid transfer devices such as serological pipettes or graduated cylinders), this could have easily led to RSEs in $K$ and $\Delta H$ of 10\% or greater. 
+Although the absolute error in $\Delta G$ would remain small ($\sim$0.04 kcal/mol), the absolute error in $\Delta H$ would be large ($\sim$1.1 kcal/mol), making the error in $-T \Delta S$ comparable in magnitude but opposite in sign.  
+This can have important consequences in trying to ascribe significance to differences in entropy-enthalpy compensation within a congeneric series, especially when differences in $\Delta G$ are small~\cite{freire:chem-biol-drug-des:2007:compensation,freire:drug-discovery-today:2008:entropy-enthalpy,freire:nat-rev-drug-discovery:2010:itc-lead-optimization}.
+We note, for example, that the reported errors in $\Delta H$ (and hence $T \Delta S$) for the ABRF-MIRG'02 study were as much as two orders of magnitude smaller than the actual error deduced from variation among independent measurements, and that simply repeating the experiment using the same titrant solution or ligand stock solution (from which the titrant is prepared) would not reveal this variation~\cite{tellinghuisen-chodera:2011:anal-biochem:systematic-itc-errors}.
+
+%Conclusion
+%
+%* We realize that our approach will not easily apply to all experiments of interest, but we hope this will at least help researchers with common problems make accuracy targets more robustly.
+%[JDC: Do we need conclusions for this note?  It’s so short---we probably don’t need to say things twice!]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ACKNOWLEDGMENTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Acknowledgments}
+
+JDC is funded by a Distinguished Postdoctoral Fellowship from the California Institute for Quantitative Biosciences (QB3) at the University of California, Berkeley.
+SEB acknowledges support from QB3 during the performance of this work.
+The authors are grateful to Brian K.~Shoichet (UCSF) for the use of his laboratory facilities for this study, as well as Allison Doak (UCSF) and Matthew Merski (UCSF) for their assistance.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BIBLIOGRAPHY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{model1-num-names}
+\bibliography{itc-worksheet}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SUPPLEMENTARY MATERIAL
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+
+\section{Supplementary Material}
+
+\subsection{Experimental Details}
+
+Both the CBS-into-CAII and CBS-into-buffer titrations were conducted using the following protocol in Table~\ref{table:experimental-parameters}.
+An archive of the MicroCal VP-ITC data files (.itc) generated by these experiments are available as Supplementary Material.
+
+\begin{table}[htb]
+\caption{{\bf Experimental parameters for VP-ITC.}
+\label{table:experimental-parameters}}
+\centering
+\begin{tabular}{p{0.7\columnwidth} p{0.2\columnwidth}}
+\hline\hline
+initial ``down syringe'' following purge-refill & 10 $\mu$L \\
+number of injections & 11 \\
+cell temperature & 25 C \\
+equilibration time & 300 s\\
+stir speed & 307 RPM \\
+reference power & 10 $\mu$cal/s \\
+feedback mode/gain & high \\
+equilibration & fast  \\
+initial ``throwaway'' injection volume & 1 $\mu$L \\
+subsequent injection volume & 10 $\mu$L \\
+injection rate & 2 s/$\mu$L \\
+time between injections & 240 s \\
+filter time for power measurements & 2 s \\
+\hline\\
+\end{tabular}
+\end{table}
+
+\subsection{ITC Spreadsheet}
+Figure~\ref{figure:spreadsheet} depicts the spreadsheet (available for for download from Supplementary Material in multiple formats, and online at \url{http://simtk.org/home/itc-worksheet}) with the details for the CBS-CAII titration experiment reported here filled in.
+
+The spreadsheet is divided into sections corresponding to the different components of a typical ITC experiment.
+The first section (\emph{Experimental Details}) contains general details of the experiment, the second section (\emph{Ligand}) the details of ligand (titrant) solution preparation, the third section (\emph{Protein}) the protein (titrand) preparation, and the final section (\emph{Thermodynamic Parameters}) the details of the least-squares fit and overall error.
+Green cells indicate records the user is to fill in during the planning stages of the experiment, yellow cells are filled in by the user during the course of preparing solutions and executing the experiment, grey cells are automatically computed by the spreadsheet to aid the user in experimental design and analysis.
+Importantly, during both preparation of the titrant and titrate, a ``typical error'' sets the upper bound for the error the experimenter should be able to achieve.
+Exceeding this typical error is a clear indication that a precision-limiting step has crept into the workflow.
+
+We stress that the ``desired'' grey fields specify target values that the experimenter is encouraged to meet as closely as possible, but the practicalities of experimental work often necessitate practical deviations from these goals.
+The spreadsheet is still able to allow the experimenter to track their actual measurements at each step and propagate error to the final results accordingly.
+
+{\color{red}[JDC: Should we add step-by-step instructions for filling in and using the spreadsheet?]}
+
+
+{\color{red}[JDC: To propagate the error in $n$, I also used the rule of adding in quadrature:
+\begin{equation}
+\left(\frac{s_n}{n}\right)^2 = \left(\frac{s_{n,\mathrm{LS}}}{n}\right)^2 + \left(\frac{s_\mathrm{[X]_s}}{[X]_s}\right)^2 .
+\end{equation}
+If this is inappropriate, I should change this---I haven't worked through this yet.]}
+
+\begin{figure*}[h]
+\begin{centering}
+
+\resizebox{\textwidth}{!}{\includegraphics[angle=0]{worksheet-102512a}}
+
+\end{centering}
+\caption{{\bf Spreadsheet for this experiment showing automated propagation of error.}  
+This spreadsheet and blank templates is available for download in multiple formats at \url{http://simtk.org/home/itc-worksheet}.
+\label{figure:spreadsheet}}
+\end{figure*}
+
+\subsection{Propagation of pipetting error}
+
+{\color{red}[JDC: This section should have more information on propagation of error for pipetting steps and a summary of common pipette errors.  I'm still trying to figure out if there is a way to have this done automatically in the spreadsheet, such as having the experimenter list the number of volume transfers of a particular pipette class.]}
+
+\end{document}

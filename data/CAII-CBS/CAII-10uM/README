@@ -1,0 +1,84 @@
+Titration of carboxybenzenesulfonamide (CBS) into carbonic anhydrase II (CAII)
+
+06 May 2011 
+
+These experiments follow the control experiment performed in Myszka et al. ABRF MIRG'02. [1]
+
+SAMPLE PREPARATION PROTOCOL
+
+*PBS Buffer
+
+1M NaH2PO4 (monobasic sodium phopshate) and 0.5M Na2HPO4 (dibasic sodium phosphate) stock solutions were obtained from the Shoichet lab (Sigma-Aldrich or Fisher?).
+
+0.2M sodium phosphate stocks:
+1L of 0.2M mono- and dibasic stock solutions for PBS buffer preparation were made by measuring 0.1L and 0.4L of previously prepared 1M monobasic and 0.5M dibasic sodium phosphate stocks, respectively. The total volume of each 0.2M stock was brought up to 1L with dH2O.
+
+PBS Buffer: 0.02M Sodium Phosphate pH 7.4, 150mM NaCl
+Utilizing Sørensen's Table of Buffer Mixtures (ref), a 100mL stock of 0.2M sodium phosphate  approximately pH 7.4 was prepared by measuring 20mL +/-1mL of 0.2M monobasic and 80mL +/-1mL of 0.2M dibasic sodium phosphate. To this stock was then added <0.9L of dH2O and 8.8 +/-0.1g of NaCl (supplier info). The solution was adjusted to pH 7.41 +/- 0.01 (? pH meter info) with 10M NaOH and the total volume was brought up to 1L with dH2O.
+
+* CAII
+
+Carbonic anhydrase II was obtained from Sigma-Aldrich (product C2522-25mg, lot #XXXXXXXXXXXX) in the form of lyophilized powder.
+
+Preparation of protein for dialysis:
+4 mL of PBS (pH 7.4) buffer were dispensed from a 5 mL serological pipette into the container, gently pipetting to dissolve the protein. 1 mL was transferred into a D-Tube Dialyzer Maxi dialysis tube with  MWCO 6-8kda (Millipore), to which an additional 1 mL of PBS buffer was added. The sample was dialyzed overnight in a covered beaker against ~1 L PBS dialysis buffer. Volume levels in the dialysis tube were visually inspected after dialysis and found to be similar.
+
+Spectroscopic measurements of CAII stock after dialysis:
+To roughly assess the protein concentration post-dialysis, a 1:8 dilution was prepared by adding 20 uL of protein solution to 140 uL of PBS dialysis buffer and loading 100 uL into a Hellma Ultra-Micro 50uL quartz cuvette with a 10 mm path length and the absorbance at 280nm was measured with a UV-Vis spectrophotometer, Agilent 8453 model. The absorbance was read to 0.6252+/-0.01AU. Using an extinction coefficient of 50070 M^{-1} cm^{-1} provided by Sigma-Aldrich, this yielded a concentration of ~ 100 uM.
+
+The absorbance was also determined with the NanoDrop ND-1000 spectrophotometer. A 3uL sample of CAII post-dialysis with no further dilution gave an absorbance of 5.209 +- 0.104 AU at A-280nm and a path length of 10mm. Using an extinction coefficient of 50070 M^{-1} cm^{-1}, this yielded a concentration of ~ 104 uM.
+PBS Buffer for ITC Experiments:
+The dialysis buffer was recovered, filtered, and stored at 4 C for use in preparing the final CAII solution, the CBS solution, and in blank titrations. pH re-measurement at ambient temperature verified the pH remained at 7.4.
+
+Preparation of 10uM CAII sample:
+The 2 mL dialyzed protein solution was extracted from the tube and diluted with 8 mL PBS buffer (above) to yield 10 mL of ~ 10 uM stock. The concentration of this ~ 10 uM stock was assayed measuring the absorbance at 280 nm on the NanoDrop ND-1000, which was measured to be 0.457 +- 0.009 AU, yielding a concentration of ~9.1 uM.
+
+
+* CBS
+
+Carboxybenzenesulfonamide (CBS) was obtained from Sigma-Aldrich (4-sulfonylbenzoic acid at 97% purity, product 000944798, lot #MKBF3323V).  
+
+2mM stock solution of CBS in PBS buffer from overnight protein dialysis:
+To prepare a ~ 2 mM stock solution, 24.8 +- 0.1 mg were massed out onto a tared plastic weighing boat on an analytical balance. The contents of the boat were added to a 50 ml Falcon tube, to which 34 +- 0.5 ml dialysis PBS buffer was added using a 50 ml serological pipette. An additional 249 +- 2 ul PBS buffer was added using a 1000 ul micropipette, rinsing the boat to ensure all CBS was transferred into the Falcon tube. The boat was again rinsed with 1000 ul of the contents of the Falcon tube using the same micropipette. The Falcon tube was vortexed vigorously for ~ 10 min to ensure all visible solid was dissolved.
+
+For this ~ 2 mM stock, a total of 24.8 +/- 0.1 mg was dissolved in 34.2 +- 0.5 mL PBS, for a total concentration of 0.403 +/- 0.007 g/L (~1.7% accuracy). Using a MW for CBS of 201.2 g/mol, this gave a solution of 2.00 +/- 0.03 mM.
+
+Spectroscopic measurements of 2mM CBS stock:
+The concentration of the ~ 2 mM stock was assayed using a NanoDrop ND-1000 spectrophotometer to determine the absorbance at 272 nm [1]. A 3 uL sample was loaded, and the absorbance was determined to be 0.260 +/- 0.005 AU using the path length of 1 mm. Using an extinction coefficient of 1307 +/- 126 M^{-1} cm^{-1} from Myzska et al., the concentration was determined to be 2.0 +/- 0.2 mM.
+
+446uM CBS titrant preparation:
+To prepare the titrant solution of ~446 uM CBS for loading in the syringe, 0.892 +/- 2 ul of 2 mM CBS stock solution was dispensed into a 10 ml Falcon tube using a 200 ul pipetteman, to which 3.109 +/- 0.005 mL PBS buffer was added using a 5000 ul pipetteman. The resulting solution should have a concentration of 446 +/- 1 uM by propagation of error.
+
+Spectroscopic measurements of titrant stock:
+Concentration of the ~ 446 uM CBS was assayed using a NanoDrop ND-1000 spectrophotometer to determine the absorbance at 272 nm using a 3 uL sample. The absorbance was determined to be 0.611 +/- 0.012 AU using the path length of 1 mm. Using an extinction coefficient of 1307 +- 126 M^{-1} cm^{-1} from Myzska et al., the concentration was determined to be 474 +/- 46 uM. Corrected for ligand purity (97%, Sigma-Aldrich) the CBS concentration was finally 453uM +/-error.
+
+The concentration was also checked with the more accurate UV-vis spectrophotometer (Agilent 8453) using a Hellma Ultra-Micro 50uL quartz cuvette with a 10 mm path length. The absorption at 272 nm was measured to be 0.59667 +/- 0.01 AU, giving a concentration of 457 +/-??? uM and corrected for ligand purity, 443uM +/-uM.
+
+
+ITC PROTOCOL 
+
+Syringe: [CBS] 443 uM 
+Sample cell: [CAII] 9.13 uM 
+
+10 injections of 10 uL were used, with a 10 uL "syringe down" command issued prior to loading the syringe into the VP-ITC instrument. A 300 s pre-injection data recording period was used. Each injection was 20 s in duration, with 240 s between injections. The experiment was performed at 25 C, with samples equilibrated to ~ 24 C prior to loading. The room in which the instrument is located was thermostatted to 21 C.
+
+The CBS concentration was determined from absorbance at 272nm with a NanoDrop ND-1000 spectrophotometer, using the extinction coefficient 1307 +- 126 M^{-1} cm^{-1} from Myszka et al.
+The CAII concentration was determined from absorbance at 280 nm with NanoDrop ND-1000 spectrophotometer, using the extinction coefficient 50070 M^{-1} cm^{-1}. Both CBS and CAII were dissolved in PBS pH 7.4 buffer from overnight dialysis of CAII sample.
+
+MANIFEST
+
+original-data/ - original .itc files produced by the MicroCal VP-ITC
+origin-power-measurements/ - text file of Origin extracted power measurements (filter time 2 s)
+origin-baseline-fits/ - PDFs of Origin automated baseline fits
+origin-integrated-heats/ - text files of Origin automatic integration of heats
+origin-fit/ - PDF of Origin automated fit of titration of ligand into protein (without blank subtraction)
+
+EXPERIMENTS
+
+050611a - titration of CBS into CAII
+050611b - titration of buffer into CAII
+050611c - titration of buffer into buffer
+050611d - titration of CBS into buffer
+
+
+	1)	Myszka et al. J Biomol Tech. 2003 December; 14(4): 247–269

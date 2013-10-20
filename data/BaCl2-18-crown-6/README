@@ -1,0 +1,1 @@
+gfortran-mp-4.3 -o ITCPROG5 ITCPROG5.FOR
