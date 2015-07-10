@@ -263,13 +263,14 @@ where $i$, $j$, and $k$ are the powers to which the independent measurements $x$
 Often, a single term in Eq.~\ref{equation:relative-error} will dominate, and the relative error is essentially identical to this contribution.
 For example, if $f = x/y$ with $(s_x/x)$ = 4\% and $(s_y/y)$ = 1\%, then $(s_f/f) = 4.1\% \approx 4\%$.
 
-Provided the relative errors in concentration $[X]_s$ are sufficiently small ($<$20\%) for the Taylor expansion above to be accurate, we can use Eq.~\ref{equation:relative-error} to estimate the relative error in the thermodynamic parameters $K$ and $\Delta H$ and site parameter $n$ given corresponding uncertainties from the least-squares fit ($s_\mathrm{K,LS}$, $s_\mathrm{\Delta H, LS}$, $s_\mathrm{n, LS}$) and the uncertainty in the titrant concentration $s_\mathrm{[X]_s}$~\cite{tellinghuisen-chodera:2011:anal-biochem:systematic-itc-errors},
+Provided the relative errors in concentration $[X]_s$ are sufficiently small ($<$20\%) for the Taylor expansion above to be accurate, we can use Eq.~\ref{equation:relative-error} to estimate the relative error in the thermodynamic parameters $K$ and $\Delta H$ and site parameter $n$ given corresponding uncertainties from the least-squares fit ($s_\mathrm{K,LS}$, $s_\mathrm{\Delta H, LS}$, $s_\mathrm{n, LS}$) and in the titrant concentration $s_\mathrm{[X]_s}$~\cite{tellinghuisen-chodera:2011:anal-biochem:systematic-itc-errors},
 \begin{eqnarray}
 \left(\frac{s_{K}}{K}\right)^2 &=& \left(\frac{s_\mathrm{K,LS}}{K}\right)^2 + \left(\frac{s_\mathrm{[X]_s}}{[X]_s}\right)^2 \nonumber \\
 \left(\frac{s_{\Delta H}}{\Delta H}\right)^2 &=& \left(\frac{s_\mathrm{\Delta H,LS}}{\Delta H}\right)^2 + \left(\frac{s_\mathrm{[X]_s}}{[X]_s}\right)^2  \nonumber \\
 \left(\frac{s_{n}}{n}\right)^2 &=& \left(\frac{s_\mathrm{n,LS}}{n}\right)^2 + \left(\frac{s_\mathrm{[X]_s}}{[X]_s}\right)^2 . 
 \label{equation:relative-error-in-thermodynamic-parameters}
 \end{eqnarray}
+where the terms $i$ and $j$ from Eq.~\ref{equation:relative-error} are determined from the manner in which [X]$_s$ influences the thermodynamic parameter of interest (see, e.g.~Table 1 of \cite{tellinghuisen:jpcb:2005:optimizing-experimental-parameters-itc}).
 Since the uncertainty in our [X]$_s$ is only 1\%, the 3\% LS fit uncertainty dominates for $K$; but for $\Delta H$ the titrant uncertainty is more important, increasing the RSE from 0.7\% to 1.2\%.  
 These computations are automatically handled by the spreadsheet, which also computes $\Delta G$ and $\Delta S$ and their uncertainties.  
 
@@ -360,11 +361,9 @@ Exceeding this typical error is a clear indication that a precision-limiting ste
 We stress that the ``desired'' grey fields specify target values that the experimenter is encouraged to meet as closely as possible, but the practicalities of experimental work often necessitate practical deviations from these goals.
 The spreadsheet is still able to allow the experimenter to track their actual measurements at each step and propagate error to the final results accordingly.
 
-{\color{red}[JDC: To propagate the error in $n$, I also used the rule of adding in quadrature:
-\begin{equation}
-\left(\frac{s_n}{n}\right)^2 = \left(\frac{s_{n,\mathrm{LS}}}{n}\right)^2 + \left(\frac{s_\mathrm{[X]_s}}{[X]_s}\right)^2 .
-\end{equation}
-If this is inappropriate, I should change this---I haven't worked through this yet.]}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SPREADSHEET FIGURE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{figure*}[h]
 \begin{centering}
