@@ -127,7 +127,7 @@ Failure to propagate these errors into reported results can lead practitioners a
 
 We therefore strongly advocate that practitioners report the method by which the titrant is prepared, the uncertainty in titrant concentration, and the resulting total error in thermodynamic parameters including titrant uncertainty in all reports of calorimetric measurements.
 Otherwise, it \emph{must} be assumed that the reported $K$, $\Delta H$, and $\Delta S$ are contaminated by errors up to 20\%, the best estimate of this unreported error available to date~\cite{tellinghuisen-chodera:2011:anal-biochem:systematic-itc-errors}.
-To aid practitioners in reducing and reporting error, we discuss accuracy-limiting steps in solution preparation and provide a spreadsheet\footnote{Available online at \url{http://simtk.org/home/itc-worksheet}.} for automatically tracking uncertainties and propagating their contributions to produce realistic error estimates.
+To aid practitioners in reducing and reporting error, we discuss accuracy-limiting steps in solution preparation and provide a spreadsheet\footnote{\url{http://github.com/choderalab/itc-worksheet}.} for automatically tracking uncertainties and propagating their contributions to produce realistic error estimates.
 
 % JDC: These are all excellent points, but might not be relevant to the central message of propagating concentration error.  Will add these back in if we can come up with a way of emphasizing importance of minimizing material use.
 %
@@ -175,7 +175,7 @@ For our experiment, Eq.~\ref{equation:syringe-concentration} suggests we should 
 
 {\bf Syringe backlash and the first-injection anomaly.}
 Our GE/MicroCal VP-ITC instrument has a syringe assembly that utilizes a worm gear which, after the recommended purge-refill process, will cause a titrant shortfall in the first injection unless a ``down syringe'' command is issued prior to loading the syringe into the sample cell~\cite{tellinghuisen:anal-biochem:2004:first-injection-anomaly}; we therefore executed a 10~$\mu$L ``down syringe'' command immediately after the purge-refill cycle.
-Because the instrument can take a substantial period of time to stabilize at the desired experimental temperature after loading the syringe, significant ($>$ 0.1 $\mu$L) diffusive loss can also contribute to a first injection shortfall.
+Because the instrument can take a substantial (but variable) period of time to stabilize at the desired experimental temperature after loading the syringe, significant ($>$ 0.1 $\mu$L) diffusive loss can also contribute to a first injection shortfall.
 We therefore programmed an initial 1 $\mu$L ``throwaway injection'' to avoid the need to correct for diffusive titrant loss during the first 10 $\mu$L injection.
 The contribution from this initial 1 $\mu$L ``throwaway'' injection was excluded from the fitting procedure during analysis.
 
@@ -186,12 +186,10 @@ The recovered protein was spun for 30 min at 16~300 RPM with no visible precipit
 The dialysate was filtered again and used to prepare both titrant and titrand to minimize buffer mismatch heats during the ITC experiment.
 
 The protein concentration was determined spectrophotometrically via absorbance at 280 nm on a NanoDrop ND-1000.
-\color{red}
 The NanoDrop (and similar instruments) utilize small sample volumes (3 $\mu$L was used here) and a 1 mm path length such that even high protein concentrations can be quickly read without the need to perform intermediate dilutions to ensure the absorbance falls in the linear range of Beer's law on standard 10 mm path-length spectrometers.
 The measured absorbance of 11.77$\pm$0.03 indicated a protein concentration of 235.0$\pm$0.6 $\mu$M (using the molar extension coefficient ($\epsilon_\mathrm{280\:nm} = 50070$ M$^{-1}$ cm$^{-1}$~\cite{myszka:2003:j-biomol-tech:abrf-mirg02}).
 The sample was then diluted to [M]$_0$ $\approx$ 10 $\mu$M using the purity-corrected post-dialysis concentration. 
 Note that, because the site parameter $n$ absorbs errors in [M]$_0$ in standard least-squares data analysis~\cite{tellinghuisen:2012:anal-biochem:designing-itc-experiments}, high precision is not required for these steps unless the stoichiometry is unknown.
-\color{black}
 
 {\bf Titrant preparation.}
 In contrast to titrand preparation, care must be taken to minimize inaccuracies in preparing titrant solutions, because the standard data analysis algorithms treat [X]$_s$ as exactly known.  
@@ -229,11 +227,9 @@ To ensure sufficient $\sim$718.29 $\mu$M titrant to allow for a ligand-into-buff
 This is more than necessary, as minimum of 700 $\mu$L/experiment is required for the VP-ITC if the low-volume syringe loading tube is utilized.
 Using the Gilson P5000, we then added 4.309(12) mL CBS stock to 4.691(12) mL PBS to obtain a 719(9) $\mu$M CBS titrant (1\% RSE).  
 Error propagation was performed automatically by the spreadsheet (Figure \ref{figure:spreadsheet}) using standard techniques (discussed below).
-\color{red}
 The use of volumetric glassware in principle requires all solutions and glassware to be equilibrated to the glassware calibration temperature, but due to the low coefficient of thermal expansion of borosilicate glass, this expansion will only introduce an error of 0.0010\%/C~\cite{lembeck:nbsir-74-461:calibration-of-volumetric-glassware}---small enough to be negligible for our purposes.
 Note that gravimetric solution preparation (GSP)---in which the mass of both compound and solvent is used to determine the final concentration---could have been used instead, but runs the risk of introducing more significant errors due to the larger coefficient of thermal expansion of liquids (dilute aqueous buffers have a coefficient of thermal expansion near that of water, $\sim$0.025\%/C); however, this still generally amounts to a negligible contribution to error for calorimetry even for changes of several degrees.
 Automated systems for gravimetric solution preparation and concentration error determination are available (such as the Mettler-Toledo Quantos), though more commonly used in industrial settings.
-\color{black}
 
 Alternatively, we could have determined the titrant concentration [X]$_s$ spectrophotometrically using the known extinction coefficient of CBS at 272 nm (reported as $\epsilon_\mathrm{272\:nm} = 1.31(13) \times 10^3$ M$^{-1}$ cm$^{-1}$~\cite{myszka:2003:j-biomol-tech:abrf-mirg02}).
 However, since the uncertainty in the absorbance measurement is 1\%, the uncertainty in the extinction coefficient $\epsilon$ (10\%) would dominate the concentration error, resulting in a spectrophotometrically-determined concentration that is uncertain by $\sim$10\%. 
