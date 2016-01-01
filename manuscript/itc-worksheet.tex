@@ -141,7 +141,7 @@ If the ligand is already in solution (e.g.~in DMSO stocks), it may not be possib
 
 {\bf Experimental design.}
 In the ABRF-MIRG'02 survey~\cite{myszka:2003:j-biomol-tech:abrf-mirg02}, participants employed titrand (cell reagent) concentrations [M]$_0$ in the range 7--71 $\mu$M.
-We used an ITC protocol design program~\cite{tellinghuisen:2012:anal-biochem:designing-itc-experiments}, which indicated $\sim$3\% relative standard error (RSE) in $K_a$ and $\sim$1\% for $\Delta H^\circ$ was possible with our instrument (a GE/MicroCal VP-ITC) using [M]$_0$ = 10 $\mu$M (consuming $\sim$0.5 mg protein per experiment).
+We used an ITC protocol design program~\cite{tellinghuisen:2012:anal-biochem:designing-itc-experiments}, which indicated $\sim$3\% relative standard error (RSE) in $K_a$ and $\sim$1\% for $\Delta H^\circ$ was possible with our instrument (a Malvern/GE/MicroCal VP-ITC) using [M]$_0$ = 10 $\mu$M (consuming $\sim$0.5 mg protein per experiment).
 While this gives $c = K [M]_0 \approx 10$, a key ITC parameter~\cite{wiseman:anal-biochem:1989:itc}, in the low range of the generally recommended $1 \le c \le 1000$ range~\cite{wiseman:anal-biochem:1989:itc}, high measurement precision can still be obtained at this $c$ value by titrating to an optimal titrant:titrand ratio $R_m$ given by,
 \begin{equation}
 R_m = \frac{6.4}{c^{0.2}} +\frac{13}{c} \label{equation:limiting-concentration},
@@ -161,11 +161,18 @@ where $V_0$ is the cell active volume ($\sim$1.4 mL for the VP-ITC) and the appr
 For our experiment, Eq.~\ref{equation:syringe-concentration} suggests we should use a purity-corrected titrant concentration $[X]_s\sim720$~$\mu$M.
 
 {\bf Syringe backlash and the first-injection anomaly.}
-Our GE/MicroCal VP-ITC instrument has a syringe assembly that utilizes a worm gear which, after the recommended purge-refill process, will cause a titrant shortfall in the first injection unless a ``down syringe'' command is issued prior to loading the syringe into the sample cell~\cite{tellinghuisen:anal-biochem:2004:first-injection-anomaly}; we therefore executed a 10~$\mu$L ``down syringe'' command immediately after the purge-refill cycle.
-Because the instrument can take a substantial (but variable) period of time to stabilize at the desired experimental temperature after loading the syringe, significant ($>$ 0.1 $\mu$L) diffusive loss can also contribute to a first injection shortfall.
+Our VP-ITC instrument has a syringe assembly that utilizes a worm gear which, after the recommended purge-refill process, will cause a titrant shortfall in the first injection unless a ``down syringe'' command is issued prior to loading the syringe into the sample cell~\cite{tellinghuisen:anal-biochem:2004:first-injection-anomaly}; we therefore executed a 10~$\mu$L ``down syringe'' command immediately after the purge-refill cycle.
+\color{red}
+Note that newer calorimeters such as the Malvern/GE/MicroCal iTC-200 that utilize a $\sim$200 $\mu$L cell volume have also been observed to suffer from this syringe backlash phenomena;
+a recent analysis found a 1.3$\mu$L shortfall in titrant delivery contributing as much as 8\% to error in $K$ and $n$~\cite{tellinghuisen:2015:bba-general:optimizing-itc}.
+Because the stoichiometric endpoint is reached after a much smaller total amount of titrant has been delivered for these low-volume instruments---the iTC-200 syringe has a total usable volume of only 35 $\mu$L---the importance of ensuring a ``down syringe'' command is issued prior to loading the syringe into the sample cell is critical for achieving high accuracy.
+\color{black}
+
+Because the VP-ITC instrument can take a substantial (but variable) period of time to stabilize at the desired experimental temperature after loading the syringe, significant ($>$ 0.1 $\mu$L) diffusive loss can also contribute to a first injection shortfall.
 We therefore programmed an initial 1 $\mu$L ``throwaway injection'' to avoid the need to correct for diffusive titrant loss during the first 10 $\mu$L injection.
 The contribution from this initial 1 $\mu$L ``throwaway'' injection was excluded from the fitting procedure during analysis.
 Note that even though we exclude this heat from the analysis, we still need the syringe ``down'' command to ensure that the correct amount of titrant enters the cell.
+
 
 {\bf Titrand preparation.} 
 The titrand solution, bovine CAII (Sigma-Aldrich, cat no.~C2522, $\sim$30 kDa, Lot No.~071M6261) in PBS buffer, was prepared following the assay conditions outlined by Myszka et al.~\cite{myszka:2003:j-biomol-tech:abrf-mirg02}.  
@@ -270,9 +277,10 @@ If indeed concentration errors were at fault, simply repeating the experiment wi
 
 \section*{Acknowledgments}
 
-JDC and SEB acknowledge funding from the Memorial Sloan Kettering Cancer Center, as well as from the California Institute for Quantitative Biosciences (QB3) at the University of California during earlier stages of this work.
 The authors are grateful to Brian K.~Shoichet (UCSF) for the use of his laboratory facilities for this study, as well as Allison Doak (UCSF) and Matthew Merski (UCSF) for their assistance.
 The authors thank Patrick Grinaway, Daniel Parton, and Ari\"{e}n Sebastian Rustenburg (MSKCC) for stimulating the publication of this work through their subsequent work on this system, and Antonio Luz and Fraser Glickman (Rockefeller High-Throughput and Spectroscopy Resource Center) for their assistance and expertise with automated calorimetry.
+JDC and SEB acknowledge funding from the Memorial Sloan Kettering Cancer Center, as well as from the California Institute for Quantitative Biosciences (QB3) at the University of California during earlier stages of this work.
+JDC also acknowledges a Louis V.~Gerstner Young Investigator Award and NIH core grant P30-CA008748 for partial funding during the course of this work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BIBLIOGRAPHY
