@@ -1,0 +1,95 @@
+---------- Forwarded message ----------
+From: <niessner-office@anchem.acs.org>
+Date: Tue, Feb 9, 2016 at 4:58 AM
+Subject: Decision on Manuscript ID ac-2016-00200b
+To: john.chodera@choderalab.org
+
+
+09-Feb-2016
+
+Journal:  Analytical Chemistry
+Manuscript ID: ac-2016-00200b
+Title: "Avoiding accuracy-limiting pitfalls in the study of protein-ligand interactions with isothermal titration calorimetry"
+Author(s): Boyce, Sarah; Tellinghuisen, Joel; Chodera, John
+
+Dear Dr. Chodera:
+
+I am reporting on the above manuscript, which you recently submitted for consideration in Analytical Chemistry.
+
+After a careful study of the manuscript and considering the reviewers' comments, I regret to inform you that I have decided against publication.  The potential usefulness of your work is not in question.  However, because this article is fully pre-published in 'squarespace' and in the light of the reviewers' evaluation and comments, I do not believe that publication is justified.  I hope you will find the reviewers' specific comments helpful in planning future work.  These comments are either included here or, if they were given in the form of a file, will appear at the bottom of the copy of this letter which will appear and be stored in your Author Center.
+
+I appreciate the opportunity to have considered this contribution, and thank you for your interest in Analytical Chemistry.
+
+Kind regards,
+
+
+Reinhard Niessner
+Associate Editor
+Analytical Chemistry
+Phone: 49 89 21 80 78231
+Fax: 49 89 21 80 78255
+Editor Email: Niessner-ACS@ws.chemie.tu-muenchen.de
+niessner-office@anchem.acs.org
+------------------------------------
+
+Reviewer(s)' Comments to Author:
+Reviewer: 1
+
+Recommendation: Should not be published in Analytical Chemistry.
+
+Comments:
+This manuscript contains a compilation of best practices for designing, performing and analyzing isothermal titration calorimetry (ITC) experiments for studying protein-ligand interactions.  Although many of the recommendations provided in this piece of work might be useful for ITC practitioners, none of them is new, as one would expect from an Analytical Chemistry article.  For example, equations 1, 2, 3 and 6 are trivial, while equations 4 and 5 have previously been published by the same authors (cf. refs. 9 and 10 cited in the manuscript).  Likewise, issues related to syringe backlash and the first-injection anomaly have been extensively dealt with in the literature (refs. 11 and 12), and essentially identical recommendations on titrand and titrant preparation are given by all major instrument manufacturers and in many methodological reviews and protocols (e.g. http://www.nature.com/nprot/journal/v1/n1/abs/nprot.2006.28.html).  On a side note, it might be much more practical in many real-world cases to assume the protein concentration to be known accurately and correct for the ligand concentration, which is often difficult to quantify because of lack of suitable spectroscopic markers and problems inherent to gravimetric determination (e.g. hygroscopy).  In such cases, the uncertainties resulting from the use of a NanoDrop instrument (as advocated by the authors) would negate all potential benefits one might possibly gain from following this protocol.  Moreover, the authors’ recommendation to weigh in 10 mg of ligand goes against their promise of “minimizing material…consumed by an experiment” (cf. Abstract).
+
+In summary, while the spreadsheet supplied along with the manuscript could be of some use, the lack of novelty precludes, in this reviewer’s opinion, publication of this manuscript in Analytical Chemistry.  The Notes & Tips section of a more specialized journal would be a much better fit for such a collection of technical recommendations.
+
+Additional Questions:
+Significance: Moderate (not suitable for Analytical Chemistry)
+
+Originality: Lowest (not suitable for Analytical Chemistry)
+
+Broad Interest: Moderate (not suitable for Analytical Chemistry)
+
+Technical Quality: High (suitable for Analytical Chemistry)
+
+Are the conclusions adequately supported by the data?: In Part
+
+Are the references appropriate and correct?: In Part
+
+Is the English adequate?: Yes
+
+Is the quality of the figures sufficient?: Yes
+
+Are the data statistically significant with appropriate controls included?: Yes
+
+
+Reviewer: 2
+
+Recommendation: Publish either as is or subject to minor revisions as indicated.
+
+Comments:
+File a6tched
+
+Additional Questions:
+Significance: High (suitable for Analytical Chemistry)
+
+Originality: High (suitable for Analytical Chemistry)
+
+Broad Interest: High (suitable for Analytical Chemistry)
+
+Technical Quality: Top 5% (suitable for Analytical Chemistry)
+
+Are the conclusions adequately supported by the data?: Yes
+
+Are the references appropriate and correct?: Yes
+
+Is the English adequate?: Yes
+
+Is the quality of the figures sufficient?: Yes
+
+Are the data statistically significant with appropriate controls included?: Yes
+
+
+------------
+PLEASE NOTE: This email message, including any attachments, contains confidential information related to peer review and is intended solely for the personal use of the recipient(s) named above. No part of this communication or any related attachments may be shared with or disclosed to any third party or organization without the explicit prior written consent of the journal Editor and ACS. If the reader of this message is not the intended recipient or is not responsible for delivering it to the intended recipient, you have received this communication in error. Please notify the sender immediately by e-mail, and delete the original message. Thank you.
+
+
